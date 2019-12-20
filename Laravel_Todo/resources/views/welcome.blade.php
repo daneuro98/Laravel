@@ -81,8 +81,20 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                   Laravel
                 </div>
+                 <tr>
+                    	<p>Họ và tên: ĐỖ DUY ĐAN </p>
+                    </tr>
+                    <tr>
+                    	<p>Năm sinh:1998</p>
+                    </tr>
+                    <tr>
+                    	<p>Trường học đang/đã theo học: ĐHQGHN </p>
+                    </tr>
+                    <tr>
+                    	<p>Mục tiêu sau khi học xong khoá học Laravel : Có đủ kiến thức thực tập</p>
+                    </tr>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
