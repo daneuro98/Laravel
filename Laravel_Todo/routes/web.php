@@ -187,3 +187,9 @@ Route::get('task', 'Frontend\TaskController@index')->name('task.index');
 Route::get('task/{task}','Frontend\TaskController@show')->name('task.show');
 Route::match(['put','patch'], 'task/{task}', 'Frontend\TaskController@update')->name('task.update');
 Route::get('task/{task}/edit', 'Frontend\TaskController@edit')->name('task.edit');
+Route::group(['namespace' => 'Frontend','as' => 'task.'] , function(){
+  // Route::get('task','TaskController@index')->name('index');
+ 
+  Route::get('task/complete/{id}','TaskController@complete')->name('complete');
+  Route::get('task/recomplete/{id}','TaskController@reComplete')->name('recomplete');
+});

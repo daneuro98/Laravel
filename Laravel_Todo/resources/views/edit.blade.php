@@ -50,6 +50,21 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="task-name" class="col-sm-3 control-label">Mức độ công việc</label>
+
+                        <div class="col-sm-6">
+
+
+                            <select name="priority ">
+                            <option value="0" @if($task->priority  == 0)  selected @endif 
+                             >Bình thường</option>
+                            <option value="1" @if($task->priority  == 1)  selected @endif>Quan trọng </option>
+                            
+                            <option value="2"@if($task->priority  == 2)  selected @endif>Khẩn cấp</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <!-- Add Task Button -->
                     <div class="form-group">

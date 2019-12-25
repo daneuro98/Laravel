@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddContentTasksTable extends Migration
+class AddPriorityColumnTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddContentTasksTable extends Migration
      */
     public function up()
     {
-        Schema::table('TableName', function (Blueprint $table) {
-            $table->text('content');
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->integer('priority')->after('status');
         });
     }
 
@@ -25,8 +25,12 @@ class AddContentTasksTable extends Migration
      */
     public function down()
     {
-        Schema::table('TableName', function (Blueprint $table) {
-            //
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->dropColumn('priority');
         });
     }
+    //alo
+    // đc r đấy 
+    // thiếu content của a rồi
+    
 }

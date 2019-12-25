@@ -62,10 +62,17 @@ class TaskController extends Controller
         $name = $request->get('name');
         $deadline = $request->get('deadline');
         $content = $request->get('content');
+        $status = $request->get('status');
+        $priority=$request->get('priority');
+
         // Tạo dữ liệu mới 
         $task = new Task();
         $task->name = $name;
         $task->status = $status;
+        $task->content = $content;
+        $task->priority = $priority;
+        // $task->update = null;
+
         // $task->content = $content;
         $task->deadline = $deadline;
         $task->save();
@@ -101,8 +108,10 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::find($id);
+        $tasks= Task::add();
          return view('edit')->with([
-            'task' => $task
+            'task' => $task,
+            'tasks' => $tasks
         ]);
     }
 
@@ -119,12 +128,17 @@ class TaskController extends Controller
         $name = $request->get('name');
         $deadline = $request->get('deadline');
         $content = $request->get('content');
+        $status = $request->get('status');
+        $priority=$request->get('priority');
+        
+
         // Cập nhật
         $task = Task::find($id);
         $task->name = $name;
-        $task->status = 1;
+        $task->status = $status;
         $task->content = $content;
         $task->deadline = $deadline;
+        $task->priority = $priority;
         $task->save();
         return redirect()->route('home');
     }
@@ -141,4 +155,20 @@ class TaskController extends Controller
         $task->delete();
         return redirect()->route('home');
     }
+    public function complete($id)
+    {
+        $task = Task::find($id);
+        $task->status=2;
+        $task->save();
+        return redirect()->route('home');
+    }
+    public function reComplete($id)
+    {
+        $task = Task::find($id);
+        $task->status=1;
+        $task->save();
+        return redirect()->route('home');
+    }
+
+//mở db của a lên
 }

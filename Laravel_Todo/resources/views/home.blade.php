@@ -55,8 +55,10 @@
                 <table class="table table-striped task-table">
                     <thead>
                     <th>Tên công việc</th>
-                    <th>Nội dung</th>
+                    <th>Trạng thái</th>
+                    <th>Mức độ</th>
                     <th>Deadline</th>
+                    
                     <th>&nbsp;</th>
                     </thead>
                     <tbody>
@@ -71,23 +73,60 @@
 
                         <td class="table-text"><div> {{ $task->name}} </div></td>
                         <td class="table-text"><div> 
-                        @if($task->status==1)
-                                Đã hoàn thành
-                             @else($task->status==0)
-                                Chưa hoàn thành
-                        @endif 
+                        @switch($task->status)
+                            @case(-1)
+                            Không làm
+                            @break
+                            @case(0)
+                            Chưa làm
+                            @break
+                            @case(1)
+                            Đang làm
+                            @break
+                            @default
+                            Đã hoàn thành
+                            
+                        @endswitch 
                             </div></td>
+                        
+                        <td class="table-text"><div> 
+                        @switch($task->priority)
+                            @case(0)
+                            Bình thường
+                            @break
+                            @case(1)
+                            Quang trọng
+                            @break
+                            @default
+                            Khẩn cấp
+                            
+                        @endswitch 
+
+                        </div></td>
                         <td class="table-text"><div> {{ $task->deadline}} </div></td>
-                        <!-- Task Complete Button -->
+                        @if($task->status==2)
+                        <td>
+                            <a href="{{ route('task.recomplete', $task->id) }}" type="submit" class="btn btn-success">
+                                <i class="fa fa-btn fa-check"></i>Làm lại
+                            </a>
+                        </td>
+
+                        @else
+                        <td>
+                            <a href="{{ route('task.complete', $task->id) }}" type="submit" class="btn btn-success">
+                                <i class="fa fa-btn fa-check"></i>Hoàn thành
+                            </a>
+                        </td>
+
+
+                        @endif
+                        @if($task->status !==2)
                         <td>
                             <a href="{{ route('todo.task.complete', 3) }}" type="submit" class="btn btn-success">
                                 <i class="fa fa-btn fa-check"></i>Sửa
                         </td>
-                        <td>
-                            <a href="{{ route('todo.task.complete', 3) }}" type="submit" class="btn btn-success">
-                                <i class="fa fa-btn fa-check"></i>Hoàn thành
-                            </a>
-                        </td>
+                        @endif
+                        
 
                         <!-- Task Delete Button -->
                         <td>
